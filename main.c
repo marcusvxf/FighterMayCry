@@ -105,14 +105,14 @@ int main() {
 
         int par = ((int)GetTime())%2;
         DrawTextureRec(chico_img, (Rectangle) {256 * par, 0, 256, 256 }, (Vector2){2100, 100}, WHITE);
-        DrawText("Animações???", 2100, 10,
+        DrawText("Animações", 2100, 10,
                  20, DARKGRAY);
 
         if(!playing && player.x > 1800) {
             PlaySound(song);
             playing = 1;
         }
-        DrawText("Música?", 2700, 10,
+        DrawText("Música", 2700, 10,
                  20, DARKGRAY);
 
 
