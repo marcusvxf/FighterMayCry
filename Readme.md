@@ -1,1 +1,2 @@
-Projeto do Grupo 1 - 
+Projeto do Grupo 1 -
+Nomes:
