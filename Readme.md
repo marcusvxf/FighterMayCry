@@ -1,2 +1,5 @@
 Projeto do Grupo 1 -
-Nomes: Thiago Grangeiro
+Nomes:
+
+Marcus Silva
+Thiago Grangeiro
