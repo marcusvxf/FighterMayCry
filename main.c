@@ -2,14 +2,27 @@
 #include <stdio.h>
 #include <math.h>
 
-float d2(Vector2 a, Vector2 b) {
-    return ((a.x - b.x) * (a.x - b.x)) + ((a.y - b.y) * (a.y - b.y));
-}
-
-int main() {
+int void() {
     SetConfigFlags(FLAG_VSYNC_HINT);
-    if (!IsWindowFullscreen()) ToggleFullscreen();
+    const int screenWidth = 800;
+    const int screenHeight = 450;
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+
+    int framesCounter = 0;
+
+    SetTargetFPS(60);     
+
+    // Main game loop
 
 
-    return 0;
+        // Update
+
+        // Draw
+
+    BeginDrawing();
+
+    EndDrawing();
+
+    CloseWindow(); 
+
 }
