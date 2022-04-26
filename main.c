@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int void() {
+void main() {
     SetConfigFlags(FLAG_VSYNC_HINT);
     const int screenWidth = 800;
     const int screenHeight = 450;
