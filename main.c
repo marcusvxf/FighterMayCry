@@ -2,28 +2,29 @@
 #include <stdio.h>
 #include <math.h>
 
-#define G 800
-
 int main() {
+    SetConfigFlags(FLAG_VSYNC_HINT);
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-
-    InitWindow(screenWidth, screenHeight, "teste");
-
-    Rectangle jogador = {600, GetScreenHeight()-300, 100, 300};
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
     
-    if (!IsWindowFullscreen()) ToggleFullscreen();
 
-    while(!WindowShouldClose()) {
-        
-        BeginDrawing();
-        ClearBackground(GREEN);
-        DrawRectangleRec(jogador, RED);
-        EndDrawing();
-    }
+    int framesCounter = 0;
+
+    SetTargetFPS(60);     
+
+    // Main game loop
 
 
-    CloseWindow();
+        // Update
+
+        // Draw
+
+    BeginDrawing();
+
+    EndDrawing();
+
+    CloseWindow(); 
 
     return 0;
 }
