@@ -4,8 +4,8 @@
 
 void main() {
     SetConfigFlags(FLAG_VSYNC_HINT);
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
 
     int framesCounter = 0;
