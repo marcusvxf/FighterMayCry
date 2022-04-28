@@ -30,23 +30,31 @@ int main() {
         // Update  
         deltaTime = GetFrameTime();      
         atualizarPersonagem(&personagem1,chao, deltaTime);
-        checarSolo(&personagem1);
-        if(personagem1.atk ==1){
-            
+        atualizarPersonagem(&personagem2, chao, deltaTime);
+        checarParede(&personagem1);
+        checarParede(&personagem2);
+        if(personagem1.atk == 1 && personagem1.defendendo == 0){
+            ataque(&personagem1,&personagem2);
+        }
+        if(personagem2.atk == 1 && personagem2.defendendo == 0){
+            ataque(&personagem2, &personagem1);
         }
 
 
         // Draw
         BeginDrawing();
-            if(personagem1.atk == 1){
+            if(personagem1.atk == 1 && personagem1.defendendo == 0){
                 DrawRectangleRec(personagem1.ataque,BLUE);
             }
-
-
+            if(personagem2.atk == 1 && personagem2.defendendo == 0){
+                DrawRectangleRec(personagem2.ataque,RED);
+            }
+            
+            DrawRectangleRec(personagem2.corpo, GREEN);
             ClearBackground(WHITE);
             DrawRectangleRec(chao, RED);
             DrawRectangleRec(personagem1.corpo, RED);
-            DrawRectangleRec(personagem2.corpo, GREEN);
+
 
         EndDrawing();
 

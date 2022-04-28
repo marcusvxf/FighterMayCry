@@ -13,6 +13,14 @@
 #define LARGURA_PERSONAGEM 150
 #define ALCANCE_ATAQUE 220
 
+typedef struct {
+    int cima;
+    int esquerda;
+    int direita;
+    int ataque;
+    int defesa;
+} Controle;
+
 typedef struct{
     int vida,pulando,defendendo,dano;
     Vector2 posicao;
@@ -20,15 +28,17 @@ typedef struct{
     Rectangle corpo;
     Rectangle ataque;
     int lado,atk;
+    Controle controle;
 }objPersonagem;
 
 void iniciarPersonagem(objPersonagem *player, int lado, float posicao);
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta);
 
-void checarSolo(objPersonagem *player);
+void checarParede(objPersonagem *player);
 
-void ataque(objPersonagem *player1,objPersonagem *player2);
+void ataque(objPersonagem *player1, objPersonagem *player2);
+
 
 
 
