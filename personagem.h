@@ -24,6 +24,8 @@ void iniciarPersonagem(objPersonagem *player);
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta);
 
+void checarSolo(objPersonagem *player);
+
 
 
 #endif

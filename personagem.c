@@ -14,9 +14,9 @@ void iniciarPersonagem(objPersonagem *player){
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
-        if (IsKeyDown(KEY_RIGHT)) player->posicao.x += 4.0f;
-        if (IsKeyDown(KEY_LEFT)) player->posicao.x -= 4.0f;
-        if (IsKeyDown(KEY_UP) && player->pulando == 0){
+        if (IsKeyDown(KEY_RIGHT)) player->posicao.x += 8.0f;
+        if (IsKeyDown(KEY_LEFT)) player->posicao.x -= 8.0f;
+        if (IsKeyDown(KEY_SPACE) && player->pulando == 0){
              //player->posicao.y -= 50.0f;
              player->velocidade = -VELOCIDADE_PULO;
              player->posicao.y -= 5.0f;
@@ -36,3 +36,12 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
 
 }
 
+
+void checarSolo(objPersonagem *player)
+{
+    if(player->posicao.x <= 0){
+        player->posicao.x = 0;
+    }else if(player-> posicao.x >= GetScreenWidth() - LARGURA_PERSONAGEM +16){
+        player->posicao.x = GetScreenWidth() - LARGURA_PERSONAGEM +16;
+    }
+}
