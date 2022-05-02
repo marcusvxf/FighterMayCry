@@ -31,7 +31,7 @@ typedef struct{
     Controle controle;
 }objPersonagem;
 
-void iniciarPersonagem(objPersonagem *player, int lado, float posicao);
+void iniciarPersonagem(objPersonagem *player, int lado, float posicao,Texture2D textura);
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta);
 

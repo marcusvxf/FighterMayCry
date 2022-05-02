@@ -10,18 +10,21 @@ int main() {
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
+    Texture2D parado = LoadTexture("assets/images/idle.png");
+
 
     objPersonagem personagem1;
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
-    iniciarPersonagem(&personagem1, 1, 60);
-    iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM);
+    iniciarPersonagem(&personagem1, 1, 60,parado);
+    iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM,parado);
 
-    //int framesCounter = 0;
+    int framesCounter = 0;
+    int framesSpeed = 8;
+    SetTargetFPS(60);     
+
     float deltaTime;
-
-    //SetTargetFPS(60);     
 
 
     // Main game loop

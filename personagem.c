@@ -3,7 +3,7 @@
 
 
 
-void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
+void iniciarPersonagem(objPersonagem *player, int lado, float posicao,Texture2D textura){
 
     player->pulando = 1;
     player->vida=100;
