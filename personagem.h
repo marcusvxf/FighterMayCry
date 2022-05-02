@@ -29,6 +29,11 @@ typedef struct{
     Rectangle ataque;
     int lado,atk;
     Controle controle;
+    int comando; //0:parado 1:esquerda 2:direitas
+    //Texture2D idle;
+    //Texture2D andar;
+    //Texture2D pular;
+    //Texture2D atacar;
 }objPersonagem;
 
 void iniciarPersonagem(objPersonagem *player, int lado, float posicao,Texture2D textura);

@@ -3,7 +3,9 @@
 
 
 
-void iniciarPersonagem(objPersonagem *player, int lado, float posicao,Texture2D textura){
+void iniciarPersonagem(objPersonagem *player, int lado, float posicao, Texture2D textura){
+    
+    //player->Textura = LoadTexture("assets/images/run.png");
 
     player->pulando = 1;
     player->vida=100;
@@ -36,20 +38,22 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
             player->lado = 1;
             player->posicao.x += 8.0f;
         }
-        if (IsKeyDown(player->controle.esquerda)) {
+        else if (IsKeyDown(player->controle.esquerda)) {
             player->lado = 0;
             player->posicao.x -= 8.0f;
         }
-        if (IsKeyDown(player->controle.cima) && player->pulando == 0){
+        else if (IsKeyDown(player->controle.cima) && player->pulando == 0){
              player->velocidade = -VELOCIDADE_PULO;
              player->posicao.y -= 5.0f;
              player->pulando = 1;
         }
+
         if(IsKeyPressed(player->controle.ataque)){
             player->atk = 1;
         }
         else{
             player->atk = 0;
+            //player->Textura = LoadTexture("assets/images/run.png");
         }
 
         if(IsKeyDown(player->controle.defesa)){

@@ -10,8 +10,7 @@ int main() {
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
-    Texture2D parado = LoadTexture("assets/images/idle.png");
-
+    Texture2D parado = LoadTexture("assets/images/personagem/Idle.png");
 
     objPersonagem personagem1;
     objPersonagem personagem2;
@@ -22,6 +21,7 @@ int main() {
 
     int framesCounter = 0;
     int framesSpeed = 8;
+    int currentFrame = 0;
     SetTargetFPS(60);     
 
     float deltaTime;
@@ -29,6 +29,17 @@ int main() {
 
     // Main game loop
     while (!WindowShouldClose()){
+        framesCounter++;
+
+        if (framesCounter >= (60/framesSpeed))
+        {
+            framesCounter = 0;
+            currentFrame++;
+
+            //if (currentFrame > 5) currentFrame = 0;
+
+            //frameRec.x = (float)currentFrame*(float)scarfy.width/6;
+        }
          
         // Update  
         deltaTime = GetFrameTime();      
@@ -52,17 +63,18 @@ int main() {
             if(personagem2.atk == 1 && personagem2.defendendo == 0){
                 DrawRectangleRec(personagem2.ataque,RED);
             }
-            
+            DrawTextureRec(parado, (Rectangle){0,50,LARGURA_PERSONAGEM,ALTURA_PERSONAGEM}, personagem1.posicao, WHITE);
             DrawRectangleRec(personagem2.corpo, GREEN);
             ClearBackground(WHITE);
             DrawRectangleRec(chao, RED);
-            DrawRectangleRec(personagem1.corpo, RED);
+            //DrawRectangleRec(personagem1.corpo, RED);
 
 
         EndDrawing();
 
      }
 
+    UnloadTexture(parado);
     CloseWindow(); 
 
     return 0;
