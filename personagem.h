@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "animacao.h"
+
 
 #define ALTURA_CHAO 100
 #define G 900
@@ -25,7 +25,7 @@ typedef struct {
 typedef struct {
     int qntFrames;
     Texture2D textura;
-}sprite;
+} sprite;
 
 typedef struct{
     int vida,pulando,defendendo,dano;
@@ -40,6 +40,8 @@ typedef struct{
     sprite pular;
     sprite atacar;
 }objPersonagem;
+
+#include "animacao.h"
 
 void iniciarPersonagem(objPersonagem *player, int lado, float posicao);
 
