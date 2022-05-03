@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include "personagem.h"
 
-void animacaoPersonagem(objPersonagem *player);
+void animacaoPersonagem(objPersonagem *player,int frameCounter);
 
 void terminarAnimacao(objPersonagem *player);
 

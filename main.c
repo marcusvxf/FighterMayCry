@@ -67,7 +67,7 @@ int main() {
                 DrawRectangleRec(personagem2.ataque,RED);
             }
             //DrawTextureRec(parado, (Rectangle){0,0, parado.width, parado.height}, personagem1.posicao, WHITE);
-            animacaoPersonagem(&personagem1);
+            animacaoPersonagem(&personagem1,framesCounter);
             DrawRectangleRec(personagem2.corpo, GREEN);
             ClearBackground(WHITE);
             DrawRectangleRec(chao, RED);

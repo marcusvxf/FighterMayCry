@@ -43,10 +43,10 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     player->atacar.qntFrames = 10;
     player->pular.qntFrames = 1;
 
-    /*player->parado.frameAtual = 0;
+    player->parado.frameAtual = 0;
     player->andar.frameAtual = 0;
     player->pular.frameAtual = 0;
-    player->atacar.frameAtual = 0;*/
+    player->atacar.frameAtual = 0;
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){

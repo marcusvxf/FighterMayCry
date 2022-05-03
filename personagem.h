@@ -24,6 +24,7 @@ typedef struct {
 
 typedef struct {
     int qntFrames;
+    int frameAtual;
     Texture2D textura;
 } sprite;
 
