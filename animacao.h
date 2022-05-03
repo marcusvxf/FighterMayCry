@@ -8,6 +8,8 @@
 #include "personagem.h"
 
 
-void iniciarAnimacao(objPersonagem *player);
+void animacaoPersonagem(objPersonagem *player);
+
+void terminarAnimacao(objPersonagem *player);
 
 #endif

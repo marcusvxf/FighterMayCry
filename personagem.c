@@ -1,9 +1,10 @@
 #include "personagem.h"
 #include "raylib.h"
+#include "animacao.h"
 
 
 
-void iniciarPersonagem(objPersonagem *player, int lado, float posicao, Texture2D textura){
+void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     
     //player->Textura = LoadTexture("assets/images/run.png");
 
@@ -23,6 +24,10 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao, Texture2D
         player->controle.esquerda = KEY_A;
         player->controle.ataque = KEY_SPACE;
         player->controle.defesa = KEY_S;
+        player->parado.textura = LoadTexture("assets/images/personagem/Idle.png");
+        player->andar.textura = LoadTexture("assets/images/personagem/run.png");
+       //player->pular.textura = LoadTexture("assets/images/personagem/Idle.png");
+        player->atacar.textura = LoadTexture("assets/images/personagem/attack.png");
     }
     else if(lado == 0) {
         player->controle.cima = KEY_UP;
@@ -31,6 +36,17 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao, Texture2D
         player->controle.ataque = KEY_ENTER;
         player->controle.defesa = KEY_DOWN;
     }
+
+    //sprites
+    player->parado.qntFrames = 1;
+    player->andar.qntFrames = 8;
+    player->atacar.qntFrames = 10;
+    player->pular.qntFrames = 1;
+
+    /*player->parado.frameAtual = 0;
+    player->andar.frameAtual = 0;
+    player->pular.frameAtual = 0;
+    player->atacar.frameAtual = 0;*/
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
