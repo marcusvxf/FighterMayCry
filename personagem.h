@@ -29,9 +29,9 @@ typedef struct {
 } sprite;
 
 typedef struct{
-    int vida,pulando,defendendo,dano;
+    int pulando,defendendo;
     Vector2 posicao;
-    float velocidade;
+    float velocidade, dano, vida;
     Rectangle corpo;
     Rectangle ataque;
     int lado,atk;
@@ -39,7 +39,9 @@ typedef struct{
     sprite parado;
     sprite andar;
     sprite pular;
+    sprite cair;
     sprite atacar;
+    sprite defender;
 }objPersonagem;
 
 #include "animacao.h"

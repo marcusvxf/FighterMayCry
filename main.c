@@ -39,10 +39,6 @@ int main() {
         {
             framesCounter = 0;
             currentFrame++;
-
-            //if (currentFrame > 5) currentFrame = 0;
-
-            //frameRec.x = (float)currentFrame*(float)scarfy.width/6;
         }
          
         // Update  
@@ -60,26 +56,31 @@ int main() {
 
         // Draw
         BeginDrawing();
-            if(personagem1.atk == 1 && personagem1.defendendo == 0){
+            /*if(personagem1.atk == 1 && personagem1.defendendo == 0){
                 DrawRectangleRec(personagem1.ataque,BLUE);
             }
             if(personagem2.atk == 1 && personagem2.defendendo == 0){
                 DrawRectangleRec(personagem2.ataque,RED);
-            }
+            }*/
             //DrawTextureRec(parado, (Rectangle){0,0, parado.width, parado.height}, personagem1.posicao, WHITE);
             animacaoPersonagem(&personagem1,framesCounter);
-            DrawRectangleRec(personagem2.corpo, GREEN);
+            animacaoPersonagem(&personagem2, framesCounter);
+            //DrawRectangleRec(personagem2.corpo, GREEN);
             ClearBackground(WHITE);
             DrawRectangleRec(chao, RED);
             //DrawText(str, 250, 20, 20, DARKGRAY);
             //DrawRectangleRec(personagem1.corpo, RED);
 
+            //teste vida
+            DrawRectangleRec((Rectangle) {20, 20, personagem1.vida, 20}, GREEN);
+            DrawRectangleRec((Rectangle) {500, 20, personagem2.vida, 20}, RED);
 
         EndDrawing();
 
      }
 
     terminarAnimacao(&personagem1);
+    terminarAnimacao(&personagem2);
     CloseWindow(); 
 
     return 0;

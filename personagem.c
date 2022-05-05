@@ -6,17 +6,17 @@
 
 void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     
-    //player->Textura = LoadTexture("assets/images/run.png");
 
     player->pulando = 1;
-    player->vida=100;
-    player->dano = 5;
+    player->vida=100.0f;
+    player->dano = 0.1f;
     player->defendendo = 0;
     player->posicao.x = posicao;
     player->posicao.y=GetScreenHeight() - ALTURA_CHAO - ALTURA_PERSONAGEM;
     player->corpo = (Rectangle) { player->posicao.x , player->posicao.y, LARGURA_PERSONAGEM, ALTURA_PERSONAGEM };
     player->velocidade = 0.0;
     player->lado = lado;
+    player->atk = 0;
 
     if(lado == 1) {
         player->controle.cima = KEY_W;
@@ -26,8 +26,10 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
         player->controle.defesa = KEY_S;
         player->parado.textura = LoadTexture("assets/images/personagem/Idle.png");
         player->andar.textura = LoadTexture("assets/images/personagem/run.png");
-       //player->pular.textura = LoadTexture("assets/images/personagem/Idle.png");
+        player->pular.textura = LoadTexture("assets/images/personagem/JumpAndFall1.png");
         player->atacar.textura = LoadTexture("assets/images/personagem/attack.png");
+        player->cair.textura = LoadTexture("assets/images/personagem/JumpAndFall2.png");
+        player->defender.textura = LoadTexture("assets/images/personagem/defesa.png");
     }
     else if(lado == 0) {
         player->controle.cima = KEY_UP;
@@ -35,6 +37,12 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
         player->controle.esquerda = KEY_LEFT;
         player->controle.ataque = KEY_ENTER;
         player->controle.defesa = KEY_DOWN;
+        player->parado.textura = LoadTexture("assets/images/personagem2/Idlep2.png");
+        player->andar.textura = LoadTexture("assets/images/personagem2/runp2.png");
+        player->pular.textura = LoadTexture("assets/images/personagem2/JumpAndFallp2.png");
+        player->atacar.textura = LoadTexture("assets/images/personagem2/attackp2.png");
+        player->cair.textura = LoadTexture("assets/images/personagem2/JumpAndFallp3.png");
+        player->defender.textura = LoadTexture("assets/images/personagem2/defesap2.png");
     }
 
     //sprites
@@ -42,11 +50,15 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     player->andar.qntFrames = 8;
     player->atacar.qntFrames = 10;
     player->pular.qntFrames = 1;
+    player->cair.qntFrames = 1;
+    player->defender.qntFrames = 1;
 
     player->parado.frameAtual = 0;
     player->andar.frameAtual = 0;
     player->pular.frameAtual = 0;
     player->atacar.frameAtual = 0;
+    player->cair.frameAtual = 0;
+    player->defender.frameAtual = 0;
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
@@ -67,10 +79,7 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
         if(IsKeyPressed(player->controle.ataque)){
             player->atk = 1;
         }
-        else{
-            player->atk = 0;
-            //player->Textura = LoadTexture("assets/images/run.png");
-        }
+
 
         if(IsKeyDown(player->controle.defesa)){
             player->defendendo = 1;
@@ -92,7 +101,7 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
             player->ataque = (Rectangle) {player->posicao.x + LARGURA_PERSONAGEM-17, player->posicao.y + (ALTURA_PERSONAGEM/4), ALCANCE_ATAQUE, 20};
         }
         else if(player->lado == 0) {
-            player->ataque = (Rectangle) {player->posicao.x - ALCANCE_ATAQUE, player->posicao.y + (ALTURA_PERSONAGEM/4), ALCANCE_ATAQUE, 20};
+            player->ataque = (Rectangle) {player->posicao.x - ALCANCE_ATAQUE + 75, player->posicao.y + (ALTURA_PERSONAGEM/4), ALCANCE_ATAQUE, 20};
         }
 
         player->corpo = (Rectangle) { player->posicao.x - 20, player->posicao.y - 40, LARGURA_PERSONAGEM, ALTURA_PERSONAGEM };
