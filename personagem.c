@@ -76,12 +76,12 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
              player->pulando = 1;
         }
 
-        if(IsKeyPressed(player->controle.ataque)){
+        if(IsKeyPressed(player->controle.ataque) && player->defendendo == 0){
             player->atk = 1;
         }
 
 
-        if(IsKeyDown(player->controle.defesa)){
+        if(IsKeyDown(player->controle.defesa) && player->atk == 0){
             player->defendendo = 1;
         }
         else{

@@ -35,7 +35,7 @@ void animacaoPersonagem(objPersonagem *player,int frameCounter){
         DrawTextureRec(player->defender.textura, (Rectangle){0, 0,mult* player->defender.textura.width, player->defender.textura.height}, player->posicao, WHITE);
     }
         
-    else if(player->atk==1){
+    else if(player->atk==1 && player->defendendo == 0){
         if(player->lado == 1){
             DrawTextureRec(player->atacar.textura, (Rectangle){player->atacar.frameAtual * player->atacar.textura.width/player->atacar.qntFrames, 0, mult*player->atacar.textura.width/player->atacar.qntFrames, player->atacar.textura.height}, player->posicao, WHITE);
         }
