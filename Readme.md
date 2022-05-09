@@ -7,5 +7,5 @@
   <p>Marcus Silva</p>
   <p>Thiago Grangeiro</p>
   
-  <h3>Descriçaõ do projeto:<h3>
+  <h3>Descriçaõ do projeto:</h3>
   <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
