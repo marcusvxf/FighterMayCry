@@ -9,11 +9,11 @@
  <a href="#Pre">Pré-requisitos</a>
 </p>
   <h3 id="grupo">Grupo:</h2>
-  <p>Caio Rocha<p>
-  <p> 🐉 Eros Santos<p>
-  <p>Luiz Fernando</p>
-  <p > :vampire: <a href="https://github.com/marcusvxf">Marcus Silva</a></p>
-  <p>Thiago Grangeiro</p>
+  <p><a href="https://github.com/caiorochac">Caio Rocha</a><p>
+  <p> 🐉<a href="https://github.com/Scanorsam"> Eros Santos<a><p>
+  <p><a href="https://github.com/LuizFernandoUFPE">Luiz Fernando<a></p>
+  <p> :vampire: <a href="https://github.com/marcusvxf">Marcus Silva</a></p>
+  <p> <a href="https://github.com/Strateago">Thiago Grangeiro</a></p>
   
  <h3 id="descricao">:scroll: Descriçaõ do projeto:</h3>
  <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
