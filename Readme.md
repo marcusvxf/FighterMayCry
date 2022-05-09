@@ -12,7 +12,7 @@
   <p>Caio Rocha<p>
   <p>Eros Santos<p>
   <p>Luiz Fernando</p>
-  <p>Marcus Silva</p>
+  <p>Marcus Silva</p> :vampire:
   <p>Thiago Grangeiro</p>
   
   <h3 id="descricao">Descriçaõ do projeto:</h3>
