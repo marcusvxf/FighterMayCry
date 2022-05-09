@@ -18,5 +18,5 @@
   <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
 
 
-  <h3 id="Referencias">Referencias</h3>
-  <P>A sprite dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage</p>
+  <h3 id="Referencias:">Referencias</h3>
+  <p>A sprite dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
