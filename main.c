@@ -4,12 +4,12 @@
 #include "animacao.h"
 #include "personagem.h"
 
-
 int main() {
     SetConfigFlags(FLAG_VSYNC_HINT);
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+  
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
 
