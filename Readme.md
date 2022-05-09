@@ -10,7 +10,7 @@
 </p>
   <h3 id="grupo">Grupo:</h2>
   <p>Caio Rocha<p>
-  <p>Eros Santos<p>
+  <p> 🐉 Eros Santos<p>
   <p>Luiz Fernando</p>
   <p> :vampire: Marcus Silva</p>
   <p>Thiago Grangeiro</p>
