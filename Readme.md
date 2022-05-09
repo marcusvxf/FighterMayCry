@@ -28,7 +28,7 @@
  
  
  ```bash
- #Após os passos acima feitos pode rodar usando o seguinte comando ,no prompt dentro da pasta.
+ #Após os passos acima feitos pode rodar usando o seguinte comando no prompt dentro da pasta.
  $ mingw32-make PLATFORM=PLATFORM_DESKTOP
  ```
  
