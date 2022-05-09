@@ -2,8 +2,8 @@
 <h1 align="center">Projeto grupo 1</h1>
 
 <p align="center">
- <a text-decoration= "none"; href="#grupo">Grupo</a>
- <a href="#descricao">Descrição</a>
+ <a text-decoration= "none" href="#grupo">Grupo</a>•
+ <a href="#descricao">Descrição</a>•
  <a href="#tecnologias">Tecnologias</a>
 
 </p>
