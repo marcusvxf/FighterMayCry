@@ -19,4 +19,4 @@
 
 
   <h3 id="Referencias:">Referencias</h3>
-  <p>A sprite dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
+  <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
