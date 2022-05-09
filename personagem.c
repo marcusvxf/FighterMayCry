@@ -121,5 +121,7 @@ void checarParede(objPersonagem *player)
 void ataque(objPersonagem *player1, objPersonagem *player2) {
     if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 0) {
         player2->vida -= player1->dano;
+    }else if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 1  && player1->lado == player2->lado ){
+        player2->vida -= player1->dano;
     }
 }

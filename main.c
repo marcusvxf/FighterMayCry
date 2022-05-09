@@ -50,7 +50,7 @@ int main() {
         if(personagem1.atk == 1 && personagem1.defendendo == 0){
             ataque(&personagem1,&personagem2);
         }
-        if(personagem2.atk == 1 && personagem2.defendendo == 0){
+        if(personagem2.atk == 1 && personagem2.defendendo == 0 ){
             ataque(&personagem2, &personagem1);
         }
 
