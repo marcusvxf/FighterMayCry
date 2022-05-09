@@ -2,9 +2,9 @@
 <h1 align="center">Projeto grupo 1</h1>
 
 <p align="center">
- <a href="#grupo">Grupo</a> •
- <a href="#descricao">Descrição</a> • 
- <a href="#tecnologias">Tecnologias</a> • 
+ <a text-decoration= "none"; href="#grupo">Grupo</a>
+ <a href="#descricao">Descrição</a>
+ <a href="#tecnologias">Tecnologias</a>
 
 </p>
   <h3 id="grupo">Grupo:</h2>
