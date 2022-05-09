@@ -12,7 +12,7 @@
   <p>Caio Rocha<p>
   <p> 🐉 Eros Santos<p>
   <p>Luiz Fernando</p>
-  <p href="https://github.com/marcusvxf"> :vampire: Marcus Silva</p>
+  <p > :vampire: <a href="https://github.com/marcusvxf">Marcus Silva</a></p>
   <p>Thiago Grangeiro</p>
   
  <h3 id="descricao">:scroll: Descriçaõ do projeto:</h3>
