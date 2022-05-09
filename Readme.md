@@ -16,7 +16,7 @@
   <p> 👾 <a href="https://github.com/Strateago">Thiago Grangeiro</a></p>
   
  <h3 id="descricao">:scroll: Descriçaõ do projeto:</h3>
- <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
+ <p>O nosso jogo é um jogo de luta 2d com visão lateral e multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
 
 
 
