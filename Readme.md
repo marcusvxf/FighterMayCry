@@ -28,6 +28,8 @@
  
  
  ```bash
- <p>Após os passos acima feito pode rodar usando o seguinte comando ,no prompt dentro da pasta.</p>
+ #Após os passos acima feitos pode rodar usando o seguinte comando ,no prompt dentro da pasta.
  $ mingw32-make PLATFORM=PLATFORM_DESKTOP
  ```
+ 
+ Após isso é gerado um exe ,e pronto so abri-lo.
