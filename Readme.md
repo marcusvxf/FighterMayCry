@@ -1,7 +1,7 @@
 
-<h1>Projeto grupo 1<h1>
+<h3>Projeto grupo 1<h3>
 <div>
-  <h3>Grupo:<h3>
+  <h2>Grupo:<h2>
   <p>Caio Rocha<p>
   <p>Eros Santos<p>
   <p>Luiz Fernando<p>
