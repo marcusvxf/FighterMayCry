@@ -1,6 +1,5 @@
 
-<h3>Projeto grupo 1<h3>
-<div>
+<h1>Projeto grupo 1<h1>
   <h2>Grupo:<h2>
   <p>Caio Rocha<p>
   <p>Eros Santos<p>
@@ -8,4 +7,3 @@
   <p>Marcus Silva<p>
   <p>Thiago Grangeiro<p>
   
-<div>
