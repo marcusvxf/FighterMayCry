@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "personagem.h": "c",
+        "animacao.h": "c"
+    }
+}
