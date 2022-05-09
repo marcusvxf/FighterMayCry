@@ -26,5 +26,5 @@
  <p>Para rodara aplicação é preciso ter a maquina preparada pra utilizar aplicações em c, além de ter instalado a biblioteca Raylib.</P>
  <p>Após os passos acima feito pode rodar usando o seguinte comando ,no prompt dentro da pasta.</p>
  ```bash
- mingw32-make PLATFORM=PLATFORM_DESKTOP
+ $ mingw32-make PLATFORM=PLATFORM_DESKTOP
  ```
