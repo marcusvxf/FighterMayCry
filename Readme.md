@@ -15,14 +15,12 @@
   <p> :vampire: Marcus Silva</p>
   <p>Thiago Grangeiro</p>
   
-  <h3 id="descricao">Descriçaõ do projeto:</h3>
-  <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
+ <h3 id="descricao">:scroll: Descriçaõ do projeto:</h3>
+ <p>O nosso jogo é um jogo de luta, multiplayer onde os personagens podem atacar,pular,andar e defender.  </p>
 
 
-  <h3 id="Referencias:">Referencias</h3>
-  <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
 
- <h3 id="Pre">Pré-requisitos</h3>
+ <h3 id="Pre">:computer: Pré-requisitos</h3>
  <p>Para rodar a aplicação é preciso ter a maquina preparada pra utilizar aplicações em c, além de ter instalado a biblioteca Raylib.</P>
 
  
@@ -33,3 +31,7 @@
  ```
  
  Após isso é gerado um exe ,e pronto so abri-lo.
+ 
+  <h3 id="Referencias:">:bulb: Referencias</h3>
+  <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
+
