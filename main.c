@@ -18,14 +18,15 @@ int main() {
   
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
-    Mapa maapa;
+    Mapa maps;
     objPersonagem personagem1;
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
     Texture2D button = LoadTexture("assets/images/background/button.png");
+    //Texture2D back = LoadTexture("assets/images/background/vida2.png");
 
-    carregarItensMapa(&maapa);
+    carregarItensMapa(&maps);
     iniciarPersonagem(&personagem1, 1, 60);
     iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM);
 
@@ -52,7 +53,7 @@ int main() {
 
     float deltaTime;
 
-
+    //SetExitKey(KEY_NULL);
     // Main game loop
     while (!WindowShouldClose()){
 
@@ -88,7 +89,7 @@ int main() {
             {   
 
                 if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) parteDoJogo = 0;
-                else btnState = 1;
+                //else btnState = 1;
 
                 if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
             }
@@ -105,22 +106,29 @@ int main() {
 
                 ClearBackground(WHITE);
 
-                DrawTextureRec(button, sourceRec, (Vector2){ GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height -100}, WHITE); // Draw button frame
+                DrawTextureRec(button, sourceRec, (Vector2){ GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height -100}, WHITE);
             }
             //Jogo
             else if(parteDoJogo==0){
                 ClearBackground(WHITE);
-                
+                DrawTexture(maps.background,0,0,WHITE);
+                DrawTexture(maps.midground,0,0,WHITE);
+                DrawTexture(maps.foreground,0,0,WHITE);
+
+
+                DrawRectangleRec((Rectangle) {115 + 8*(100 - personagem1.vida), 100, 8*personagem1.vida, 50}, GREEN);
+                DrawRectangleRec((Rectangle) {GetScreenWidth()/2+60, 100, 8*personagem2.vida, 50}, RED);
+
+
+                DrawTexture(maps.barraVida,0,0,WHITE);
                 animacaoPersonagem(&personagem1,framesCounter,&parteDoJogo);
                 animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
+                DrawTexture(maps.chao,0,GetScreenHeight()-ALTURA_CHAO-10,WHITE);
 
                 
-                DrawRectangleRec(chao, RED);
-
+                
 
                 
-                DrawRectangleRec((Rectangle) {20, 20, personagem1.vida, 20}, GREEN);
-                DrawRectangleRec((Rectangle) {500, 20, personagem2.vida, 20}, RED);
 
             }
             //Final
@@ -136,7 +144,7 @@ int main() {
 
         }
     
-    descarregarItensMapa(&maapa);
+    descarregarItensMapa(&maps);
     terminarAnimacao(&personagem1);
     terminarAnimacao(&personagem2);
     encerrarSons(&personagem1);

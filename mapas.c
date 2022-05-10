@@ -6,16 +6,16 @@
 
 
 void carregarItensMapa(Mapa *myMapa) {
-    myMapa->background = LoadTexture("assets/images/backgorund/back.png");
-    myMapa->midground = LoadTexture("assets/images/backgorund/mid.png");
-    myMapa->foreground = LoadTexture("assets/images/backgorund/fore.png");
-    myMapa->chao = LoadTexture("assets/images/backgorund/Chao1.png");
-    myMapa->asset1.textura = LoadTexture("assets/images/backgorund/loja.png");
+    myMapa->background = LoadTexture("assets/images/background/back.png");
+    myMapa->midground = LoadTexture("assets/images/background/mid.png");
+    myMapa->foreground = LoadTexture("assets/images/background/fore.png");
+    myMapa->chao = LoadTexture("assets/images/background/Chao1.png");
+    myMapa->asset1.textura = LoadTexture("assets/images/background/loja.png");
     myMapa->asset1.qntFrames = 6;
     myMapa->asset1.frameAtual = 0;
-    myMapa->barraVida = LoadTexture("assets/images/backgorund/barraVida.png");
-    myMapa->asset2 = LoadTexture("assets/images/backgorund/lampada.png");
-    myMapa->asset3 = LoadTexture("assets/images/backgorund/cerca.png");
+    myMapa->barraVida = LoadTexture("assets/images/background/barraVida.png");
+    myMapa->asset2 = LoadTexture("assets/images/background/lampada.png");
+    myMapa->asset3 = LoadTexture("assets/images/background/cerca.png");
 }
 
 void descarregarItensMapa(Mapa *myMapa) {
