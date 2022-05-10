@@ -9,7 +9,7 @@
  <a href="#Pre">Pré-requisitos</a>
 </p>
   <h3 id="grupo">Grupo:</h2>
-  <p><a href="https://github.com/caiorochac">Caio Rocha</a><p>
+  <p> :snail: <a href="https://github.com/caiorochac">Caio Rocha</a><p>
   <p> 🐉 <a href="https://github.com/Scanorsam"> Eros Santos<a><p>
   <p><a href="https://github.com/LuizFernandoUFPE">Luiz Fernando<a></p>
   <p> :vampire: <a href="https://github.com/marcusvxf">Marcus Silva</a></p>
