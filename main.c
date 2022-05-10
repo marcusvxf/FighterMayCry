@@ -13,7 +13,6 @@ int main() {
   
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
-
     objPersonagem personagem1;
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
@@ -59,14 +58,14 @@ int main() {
         // Draw
         BeginDrawing();
             if(fimDeJogo == 0){
-                //DrawTextureRec(parado, (Rectangle){0,0, parado.width, parado.height}, personagem1.posicao, WHITE);
+                
+                
                 animacaoPersonagem(&personagem1,framesCounter,&fimDeJogo);
                 animacaoPersonagem(&personagem2, framesCounter,&fimDeJogo);
-                //DrawRectangleRec(personagem2.corpo, GREEN);
+
                 ClearBackground(WHITE);
                 DrawRectangleRec(chao, RED);
-                //DrawText(str, 250, 20, 20, DARKGRAY);
-                //DrawRectangleRec(personagem1.corpo, RED);
+
 
                 //teste vida
                 DrawRectangleRec((Rectangle) {20, 20, personagem1.vida, 20}, GREEN);
