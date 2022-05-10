@@ -8,7 +8,7 @@
 
 
 #define ALTURA_CHAO 100
-#define G 900
+#define G 1800
 #define VELOCIDADE_PULO 900.0f
 #define ALTURA_PERSONAGEM 250
 #define LARGURA_PERSONAGEM 105
@@ -42,6 +42,9 @@ typedef struct{
     sprite cair;
     sprite atacar;
     sprite defender;
+    sprite morrer;
+    Sound somAtaque;
+    Sound somDefesa;
 }objPersonagem;
 
 #include "animacao.h"
@@ -53,6 +56,8 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta);
 void checarParede(objPersonagem *player);
 
 void ataque(objPersonagem *player1, objPersonagem *player2);
+
+void encerrarSons(objPersonagem *player);
 
 
 
