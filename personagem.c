@@ -12,7 +12,7 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     player->dano = 0.1f;
     player->defendendo = 0;
     player->posicao.x = posicao;
-    player->posicao.y=GetScreenHeight() - ALTURA_CHAO - ALTURA_PERSONAGEM;
+    player->posicao.y = GetScreenHeight() - ALTURA_CHAO - ALTURA_PERSONAGEM-500;
     player->corpo = (Rectangle) { player->posicao.x , player->posicao.y, LARGURA_PERSONAGEM, ALTURA_PERSONAGEM };
     player->velocidade = 0.0;
     player->lado = lado;
@@ -30,6 +30,7 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
         player->atacar.textura = LoadTexture("assets/images/personagem/attack.png");
         player->cair.textura = LoadTexture("assets/images/personagem/JumpAndFall2.png");
         player->defender.textura = LoadTexture("assets/images/personagem/defesa.png");
+        player->morrer.textura = LoadTexture("assets/images/personagem/Morrer.png");
     }
     else if(lado == 0) {
         player->controle.cima = KEY_UP;
@@ -43,6 +44,7 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
         player->atacar.textura = LoadTexture("assets/images/personagem2/attackp2.png");
         player->cair.textura = LoadTexture("assets/images/personagem2/JumpAndFallp3.png");
         player->defender.textura = LoadTexture("assets/images/personagem2/defesap2.png");
+        player->morrer.textura = LoadTexture("assets/images/personagem2/Morrerp2.png");
     }
 
     //sprites
@@ -52,6 +54,7 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     player->pular.qntFrames = 1;
     player->cair.qntFrames = 1;
     player->defender.qntFrames = 1;
+    player->morrer.qntFrames = 4;
 
     player->parado.frameAtual = 0;
     player->andar.frameAtual = 0;
@@ -59,6 +62,12 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
     player->atacar.frameAtual = 0;
     player->cair.frameAtual = 0;
     player->defender.frameAtual = 0;
+    player->morrer.frameAtual = 0;
+
+    player->somAtaque = LoadSound("assets/audios/ataque.wav");
+    player->somDefesa = LoadSound("assets/audios/defesa.wav");
+    SetSoundVolume(player->somAtaque, 0.3f);
+    SetSoundVolume(player->somDefesa, 0.09f);
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
@@ -70,7 +79,7 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
             player->lado = 0;
             player->posicao.x -= 8.0f;
         }
-        else if (IsKeyDown(player->controle.cima) && player->pulando == 0){
+        if (IsKeyDown(player->controle.cima) && player->pulando == 0){
              player->velocidade = -VELOCIDADE_PULO;
              player->posicao.y -= 5.0f;
              player->pulando = 1;
@@ -78,7 +87,9 @@ void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
 
         if(IsKeyPressed(player->controle.ataque) && player->defendendo == 0){
             player->atk = 1;
+            if(!IsSoundPlaying(player->somAtaque)) PlaySoundMulti(player->somAtaque);
         }
+
 
 
         if(IsKeyDown(player->controle.defesa) && player->atk == 0){
@@ -119,9 +130,19 @@ void checarParede(objPersonagem *player)
 }
 
 void ataque(objPersonagem *player1, objPersonagem *player2) {
+    
     if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 0) {
         player2->vida -= player1->dano;
+        
     }else if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 1  && player1->lado == player2->lado ){
         player2->vida -= player1->dano;
+        
+    }else if(CheckCollisionRecs(player1->ataque, player2->corpo) && GetSoundsPlaying() < 2){
+        PlaySoundMulti(player1->somDefesa);
     }
+}
+
+void encerrarSons(objPersonagem *player) {
+    UnloadSound(player->somAtaque);
+    UnloadSound(player->somDefesa);
 }
