@@ -3,6 +3,11 @@
 #include <math.h>
 #include "animacao.h"
 #include "personagem.h"
+#include "mapas.h"
+
+#define NUM_FRAMES  3
+
+
 
 int main() {
     SetConfigFlags(FLAG_VSYNC_HINT);
@@ -13,10 +18,14 @@ int main() {
   
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
+    Mapa maapa;
     objPersonagem personagem1;
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
+    Texture2D button = LoadTexture("assets/images/background/button.png");
+
+    carregarItensMapa(&maapa);
     iniciarPersonagem(&personagem1, 1, 60);
     iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM);
 
@@ -24,69 +33,115 @@ int main() {
     int framesSpeed = 8;
     int currentFrame = 0;
     int numeroFrames = 0;
-    int fimDeJogo = 0;
+    int parteDoJogo = 2;
+
+    float frameHeight = (float)button.height/NUM_FRAMES;
+    Rectangle sourceRec = { GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height-150, (float)button.width, (float)button.height };
+
+    // Define button bounds on screen
+    Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width,(float)button.height };
+
+    int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
+    bool btnAction = false;         // Button action should be activated
+
+    Vector2 mousePoint = { 0.0f, 0.0f };
+
+
     SetTargetFPS(60);     
 
-    char str[20];
 
     float deltaTime;
 
 
     // Main game loop
     while (!WindowShouldClose()){
+
         framesCounter++;
 
-        if (framesCounter >= (60/framesSpeed))
-        {
-            framesCounter = 0;
-            currentFrame++;
+        if(parteDoJogo == 0){
+
+            if (framesCounter >= (60/framesSpeed))
+            {
+                framesCounter = 0;
+                currentFrame++;
+            }
+            
+            // Update  
+            deltaTime = GetFrameTime();      
+            if(personagem1.vida > 0) atualizarPersonagem(&personagem1, chao, deltaTime);
+            if(personagem2.vida > 0) atualizarPersonagem(&personagem2, chao, deltaTime);
+            checarParede(&personagem1);
+            checarParede(&personagem2);
+            if(personagem1.atk == 1 && personagem1.defendendo == 0){
+                ataque(&personagem1,&personagem2);
+            }
+            if(personagem2.atk == 1 && personagem2.defendendo == 0 ){
+                ataque(&personagem2, &personagem1);
+            }
+        }else if(parteDoJogo == 2){
+
+            mousePoint = GetMousePosition();
+            btnAction = false;
+
+            // Check button state
+            if (CheckCollisionPointRec(mousePoint, sourceRec))
+            {   
+
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) parteDoJogo = 0;
+                else btnState = 1;
+
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
+            }
+            else btnState = 0;
         }
-         
-        // Update  
-        deltaTime = GetFrameTime();      
-        if(personagem1.vida > 0) atualizarPersonagem(&personagem1, chao, deltaTime);
-        if(personagem2.vida > 0) atualizarPersonagem(&personagem2, chao, deltaTime);
-        checarParede(&personagem1);
-        checarParede(&personagem2);
-        if(personagem1.atk == 1 && personagem1.defendendo == 0){
-            ataque(&personagem1,&personagem2);
-        }
-        if(personagem2.atk == 1 && personagem2.defendendo == 0 ){
-            ataque(&personagem2, &personagem1);
-        }
+
+
+
 
         // Draw
         BeginDrawing();
-            if(fimDeJogo == 0){
-                
-                
-                animacaoPersonagem(&personagem1,framesCounter,&fimDeJogo);
-                animacaoPersonagem(&personagem2, framesCounter,&fimDeJogo);
+            //Menu
+            if(parteDoJogo == 2){
 
                 ClearBackground(WHITE);
+
+                DrawTextureRec(button, sourceRec, (Vector2){ GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height -100}, WHITE); // Draw button frame
+            }
+            //Jogo
+            else if(parteDoJogo==0){
+                ClearBackground(WHITE);
+                
+                animacaoPersonagem(&personagem1,framesCounter,&parteDoJogo);
+                animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
+
+                
                 DrawRectangleRec(chao, RED);
 
 
-                //teste vida
+                
                 DrawRectangleRec((Rectangle) {20, 20, personagem1.vida, 20}, GREEN);
                 DrawRectangleRec((Rectangle) {500, 20, personagem2.vida, 20}, RED);
 
-            }else{
+            }
+            //Final
+            else if (parteDoJogo ==1){
                 ClearBackground(WHITE);
                 DrawText("Final", 250, 20, 20, DARKGRAY);
 
             }
+            
 
         EndDrawing();
 
-     }
 
+        }
     
-
+    descarregarItensMapa(&maapa);
     terminarAnimacao(&personagem1);
     terminarAnimacao(&personagem2);
     encerrarSons(&personagem1);
     encerrarSons(&personagem2);
+    UnloadTexture(button); 
     CloseAudioDevice();
     CloseWindow(); 
 
