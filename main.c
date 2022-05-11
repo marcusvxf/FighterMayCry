@@ -23,7 +23,7 @@ int main() {
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
-    Texture2D button = LoadTexture("assets/images/background/button.png");
+    Texture2D button = LoadTexture("assets/images/background/botao.png");
     //Texture2D back = LoadTexture("assets/images/background/vida2.png");
 
     carregarItensMapa(&maps);
@@ -33,17 +33,19 @@ int main() {
     int framesCounter = 0;
     int framesSpeed = 8;
     int currentFrame = 0;
-    int numeroFrames = 0;
+    //int numeroFrames = 0;
     int parteDoJogo = 2;
 
-    float frameHeight = (float)button.height/NUM_FRAMES;
-    Rectangle sourceRec = { GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height-150, (float)button.width, (float)button.height };
+    int frameAtualButton = 0;
+
+    //float frameHeight = (float)button.height/NUM_FRAMES;
+    Rectangle sourceRec = {frameAtualButton*button.width/2,0, button.width/2, button.height };
 
     // Define button bounds on screen
-    Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width,(float)button.height };
+    //Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width,(float)button.height };
 
-    int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
-    bool btnAction = false;         // Button action should be activated
+    //int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
+    //bool btnAction = false;         // Button action should be activated
 
     Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -83,18 +85,21 @@ int main() {
         }else if(parteDoJogo == 2){
 
             mousePoint = GetMousePosition();
-            btnAction = false;
+            
 
             // Check button state
-            if (CheckCollisionPointRec(mousePoint, sourceRec))
+            if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()/2-button.width/4, GetScreenHeight()-button.height-100, button.width/2, button.height}))
             {   
-
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) parteDoJogo = 0;
-                //else btnState = 1;
-
-                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+                    frameAtualButton =1;
+                    
+                }
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButton = 0;
+                     parteDoJogo=0;}
+                
             }
-            else btnState = 0;
+            
         }
 
 
@@ -104,15 +109,13 @@ int main() {
         BeginDrawing();
             //Menu
             if(parteDoJogo == 2){
-                if(IsKeyPressed(KEY_P)) {
-                    while(IsKeyUp(KEY_O)) {
-                        ClearBackground(WHITE);
-                    }
-                }
 
-                ClearBackground(WHITE);
+                ClearBackground(BLUE);
 
-                DrawTextureRec(button, sourceRec, (Vector2){ GetScreenWidth()/2-button.width/2, GetScreenHeight()-button.height -100}, WHITE);
+                DrawTextureRec(button, (Rectangle){frameAtualButton*button.width/2,0, button.width/2, button.height }, (Vector2){ GetScreenWidth()/2-button.width/4, GetScreenHeight()-button.height-100}, WHITE);
+
+
+                
             }
             //Jogo
             else if(parteDoJogo==0){
@@ -124,12 +127,15 @@ int main() {
 
                 DrawRectangleRec((Rectangle) {115 + 8*(100 - personagem1.vida), 100, 8*personagem1.vida, 50}, GREEN);
                 DrawRectangleRec((Rectangle) {GetScreenWidth()/2+60, 100, 8*personagem2.vida, 50}, RED);
-                DrawTextureRec(maps.asset1.textura, (Rectangle){maps.asset1.frameAtual * maps.asset1.textura.width/maps.asset1.qntFrames, 0, maps.asset1.textura.width/maps.asset1.qntFrames, maps.asset1.textura.height}, (Vector2){1000,180}, WHITE);
+                
+                DrawTextureRec(maps.asset1.textura, (Rectangle){maps.asset1.frameAtual * maps.asset1.textura.width/maps.asset1.qntFrames, 0, maps.asset1.textura.width/maps.asset1.qntFrames, maps.asset1.textura.height}, (Vector2){1100,280}, WHITE);
                 if(framesCounter <= 60/50){
                     maps.asset1.frameAtual = (maps.asset1.frameAtual + 1) % maps.asset1.qntFrames;  
                 }
 
                 DrawTexture(maps.barraVida,0,0,WHITE);
+                DrawText("Ajax",185,40,60,BLACK);
+                DrawText("Xaja",GetScreenWidth() - 185-125,40,60,BLACK);
                 animacaoPersonagem(&personagem1,framesCounter,&parteDoJogo);
                 animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
                 DrawTexture(maps.chao,0,GetScreenHeight()-ALTURA_CHAO-10,WHITE);
