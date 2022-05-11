@@ -45,6 +45,7 @@ typedef struct{
     sprite morrer;
     Sound somAtaque;
     Sound somDefesa;
+    Sound somReceberDano;
 }objPersonagem;
 
 #include "animacao.h"

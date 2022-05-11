@@ -18,14 +18,20 @@ int main() {
   
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
+    Music musica = LoadMusicStream("assets/audios/backgroundSong.mp3");
     Mapa maps;
     objPersonagem personagem1;
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
     Texture2D button = LoadTexture("assets/images/background/botao.png");
+    Texture2D buttonAjuda = LoadTexture("assets/images/background/botaoAjuda.png");
+    Texture2D buttonVoltar = LoadTexture("assets/images/background/botaoVoltar.png");
+    Texture2D logo = LoadTexture("assets/images/background/logo.png");
     //Texture2D back = LoadTexture("assets/images/background/vida2.png");
 
+    SetMusicVolume(musica, 0.2f);
+    PlayMusicStream(musica);
     carregarItensMapa(&maps);
     iniciarPersonagem(&personagem1, 1, 60);
     iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM);
@@ -37,15 +43,13 @@ int main() {
     int parteDoJogo = 2;
 
     int frameAtualButton = 0;
+    int frameAtualButtonAjuda = 0;
+    int frameAtualButtonVoltar = 0;
 
     //float frameHeight = (float)button.height/NUM_FRAMES;
-    Rectangle sourceRec = {frameAtualButton*button.width/2,0, button.width/2, button.height };
+    //Rectangle sourceRec = {frameAtualButton*button.width/2,0, button.width/2, button.height };
 
-    // Define button bounds on screen
-    //Rectangle btnBounds = { screenWidth/2.0f - button.width/2.0f, screenHeight/2.0f - button.height/NUM_FRAMES/2.0f, (float)button.width,(float)button.height };
 
-    //int btnState = 0;               // Button state: 0-NORMAL, 1-MOUSE_HOVER, 2-PRESSED
-    //bool btnAction = false;         // Button action should be activated
 
     Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -58,10 +62,12 @@ int main() {
     //SetExitKey(KEY_NULL);
     // Main game loop
     while (!WindowShouldClose()){
-
+        UpdateMusicStream(musica);  
         framesCounter++;
+        if(IsCursorOnScreen()) mousePoint = GetMousePosition();
 
         if(parteDoJogo == 0){
+            if(IsCursorOnScreen()) HideCursor();
 
             if (framesCounter >= (60/framesSpeed))
             {
@@ -85,11 +91,9 @@ int main() {
             if(IsKeyPressed(KEY_P)) parteDoJogo = 3;
 
         }else if(parteDoJogo == 2){
-
-            mousePoint = GetMousePosition();
             
 
-            // Check button state
+            // Botao comecar jogo
             if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()/2-button.width/4, GetScreenHeight()-button.height-100, button.width/2, button.height}))
             {   
                 if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
@@ -98,13 +102,74 @@ int main() {
                 }
                 if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
                     frameAtualButton = 0;
-                     parteDoJogo=0;}
+                    parteDoJogo=0;
+                }
                 
+            }
+            if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButton = 0;
+            }
+
+            //Botao Ajuda
+            
+            if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()-buttonAjuda.width/2-50, GetScreenHeight()-buttonAjuda.height-100, buttonAjuda.width/2, buttonAjuda.height}))
+            {   
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonAjuda =1;
+                    
+                }
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonAjuda = 1;
+                    parteDoJogo=4;
+                }
+                
+            }
+
+            if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonAjuda = 0;
             }
             
         }
         else if(parteDoJogo == 3) {  //pausa
             if(IsKeyPressed(KEY_P)) parteDoJogo = 0;
+        }
+        //tela de ajuda
+        else if(parteDoJogo == 4){
+
+            if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100, buttonVoltar.width/2, buttonVoltar.height}))
+            {   
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar =1;
+                    
+                }
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar = 0;
+                    parteDoJogo = 2;
+                }
+                
+            }
+            if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar = 0;
+                }
+        }
+
+        //Tela Final
+        else if(parteDoJogo == 1){
+            if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100, buttonVoltar.width/2, buttonVoltar.height}))
+            {   
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar =1;
+                    
+                }
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar = 0;
+                    parteDoJogo = 2;
+                }
+                
+            }
+            if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
+                    frameAtualButtonVoltar = 0;
+                }
         }
 
 
@@ -116,8 +181,10 @@ int main() {
             if(parteDoJogo == 2){
 
                 ClearBackground(BLUE);
+                DrawTexture(logo,GetScreenWidth()/2-logo.width/2,GetScreenHeight() - logo.height-200,WHITE);
 
                 DrawTextureRec(button, (Rectangle){frameAtualButton*button.width/2,0, button.width/2, button.height }, (Vector2){ GetScreenWidth()/2-button.width/4, GetScreenHeight()-button.height-100}, WHITE);
+                DrawTextureRec(buttonAjuda, (Rectangle){frameAtualButtonAjuda*buttonAjuda.width/2,0, buttonAjuda.width/2, buttonAjuda.height }, (Vector2){ GetScreenWidth()-buttonAjuda.width/2-50, GetScreenHeight()-buttonAjuda.height-100}, WHITE);
 
 
                 
@@ -130,8 +197,8 @@ int main() {
                 DrawTexture(maps.foreground,0,0,WHITE);
 
 
-                DrawRectangleRec((Rectangle) {115 + 8*(100 - personagem1.vida), 100, 8*personagem1.vida, 50}, GREEN);
-                DrawRectangleRec((Rectangle) {GetScreenWidth()/2+60, 100, 8*personagem2.vida, 50}, RED);
+                DrawRectangleRec((Rectangle) {115 + 8*(100 - personagem1.vida), 100, 8*personagem1.vida, 50}, RED);
+                DrawRectangleRec((Rectangle) {GetScreenWidth()/2+60, 100, 8*personagem2.vida, 50}, BLUE);
                 
                 DrawTextureRec(maps.asset1.textura, (Rectangle){maps.asset1.frameAtual * maps.asset1.textura.width/maps.asset1.qntFrames, 0, maps.asset1.textura.width/maps.asset1.qntFrames, maps.asset1.textura.height}, (Vector2){1100,280}, WHITE);
                 if(framesCounter <= 60/50){
@@ -145,8 +212,15 @@ int main() {
                 animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
                 DrawTexture(maps.chao,0,GetScreenHeight()-ALTURA_CHAO-10,WHITE);
 
-
-                
+                //reseta os personagens para proxima patida
+                if(parteDoJogo == 1) { 
+                    personagem1.vida = 100;
+                    personagem2.vida = 100;
+                    personagem1.posicao.x = 60;
+                    personagem1.posicao.y = GetScreenHeight() - ALTURA_CHAO - ALTURA_PERSONAGEM-500;
+                    personagem2.posicao.x = GetScreenWidth() - 60 - LARGURA_PERSONAGEM;
+                    personagem2.posicao.y = GetScreenHeight() - ALTURA_CHAO - ALTURA_PERSONAGEM-500;
+                }
 
                 
 
@@ -154,12 +228,18 @@ int main() {
             //Final
             else if (parteDoJogo == 1){
                 ClearBackground(WHITE);
+                if(IsCursorOnScreen()) ShowCursor();
                 DrawText("Final", 250, 20, 20, DARKGRAY);
+                DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
 
             }
             //pausa
             else if(parteDoJogo == 3) {
                 DrawText("Pausado", GetScreenWidth()/2 - 75, GetScreenHeight()/2, 40, GREEN);
+            }
+            else if (parteDoJogo == 4){
+                ClearBackground(BLUE);
+                DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
             }
             
 
@@ -173,7 +253,9 @@ int main() {
     terminarAnimacao(&personagem2);
     encerrarSons(&personagem1);
     encerrarSons(&personagem2);
-    UnloadTexture(button); 
+    UnloadMusicStream(musica);
+    UnloadTexture(button);
+    UnloadTexture(buttonAjuda); 
     CloseAudioDevice();
     CloseWindow(); 
 

@@ -66,8 +66,10 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
 
     player->somAtaque = LoadSound("assets/audios/ataque.wav");
     player->somDefesa = LoadSound("assets/audios/defesa.wav");
+    player->somReceberDano = LoadSound("assets/audios/receberHit.wav");
     SetSoundVolume(player->somAtaque, 0.3f);
     SetSoundVolume(player->somDefesa, 0.09f);
+    SetSoundVolume(player->somReceberDano, 0.3f);
 }
 
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
@@ -133,9 +135,16 @@ void ataque(objPersonagem *player1, objPersonagem *player2) {
     
     if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 0) {
         player2->vida -= player1->dano;
+        if(GetSoundsPlaying() < 2) {
+            PlaySoundMulti(player2->somReceberDano);    
+        }
+        
         
     }else if(CheckCollisionRecs(player1->ataque, player2->corpo) && player2->defendendo == 1  && player1->lado == player2->lado ){
         player2->vida -= player1->dano;
+        if(GetSoundsPlaying() < 2) {
+            PlaySoundMulti(player2->somReceberDano);
+        }
         
     }else if(CheckCollisionRecs(player1->ataque, player2->corpo) && GetSoundsPlaying() < 2){
         PlaySoundMulti(player1->somDefesa);
@@ -145,4 +154,5 @@ void ataque(objPersonagem *player1, objPersonagem *player2) {
 void encerrarSons(objPersonagem *player) {
     UnloadSound(player->somAtaque);
     UnloadSound(player->somDefesa);
+    UnloadSound(player->somReceberDano);
 }
