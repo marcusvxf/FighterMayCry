@@ -29,7 +29,7 @@ void animacaoPersonagem(objPersonagem *player,int frameCounter,int *fimDeJogo){
         }
 
     }
-    else if(IsKeyDown(player->controle.esquerda)  && player->pulando == 0 && player->atk == 0) {
+    else if(IsKeyDown(player->controle.esquerda)  && player->pulando == 0 && player->defendendo == 0 && player->atk == 0) {
         DrawTextureRec(player->andar.textura, (Rectangle){player->andar.frameAtual * player->andar.textura.width/player->andar.qntFrames, 0, -player->andar.textura.width/player->andar.qntFrames, player->andar.textura.height}, player->posicao, WHITE);
         if(frameCounter <= 60/50){
             player->andar.frameAtual = (player->andar.frameAtual + 1) % player->andar.qntFrames;
