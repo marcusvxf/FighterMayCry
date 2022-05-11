@@ -73,11 +73,11 @@ void iniciarPersonagem(objPersonagem *player, int lado, float posicao){
 void atualizarPersonagem(objPersonagem *player, Rectangle chao, float delta){
         if (IsKeyDown(player->controle.direita)) {
             player->lado = 1;
-            player->posicao.x += 8.0f;
+            player->posicao.x += 8.0f - (player->defendendo) * 4.0f;
         }
         else if (IsKeyDown(player->controle.esquerda)) {
             player->lado = 0;
-            player->posicao.x -= 8.0f;
+            player->posicao.x -= 8.0f - (player->defendendo) * 4.0f;
         }
         if (IsKeyDown(player->controle.cima) && player->pulando == 0){
              player->velocidade = -VELOCIDADE_PULO;
