@@ -82,6 +82,8 @@ int main() {
                 ataque(&personagem2, &personagem1);
             }
 
+            if(IsKeyPressed(KEY_P)) parteDoJogo = 3;
+
         }else if(parteDoJogo == 2){
 
             mousePoint = GetMousePosition();
@@ -100,6 +102,9 @@ int main() {
                 
             }
             
+        }
+        else if(parteDoJogo == 3) {  //pausa
+            if(IsKeyPressed(KEY_P)) parteDoJogo = 0;
         }
 
 
@@ -147,10 +152,16 @@ int main() {
 
             }
             //Final
-            else if (parteDoJogo ==1){
+            else if (parteDoJogo == 1){
                 ClearBackground(WHITE);
                 DrawText("Final", 250, 20, 20, DARKGRAY);
 
+            }
+            //pausa
+            else if(parteDoJogo == 3) {
+                DrawText("Pausado", GetScreenWidth()/2 - 75, GetScreenHeight()/2, 40, GREEN);
+
+                //if(IsKeyPressed(KEY_P)) parteDoJogo = 0;
             }
             
 
