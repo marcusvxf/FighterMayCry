@@ -79,6 +79,7 @@ int main() {
             if(personagem2.atk == 1 && personagem2.defendendo == 0 ){
                 ataque(&personagem2, &personagem1);
             }
+
         }else if(parteDoJogo == 2){
 
             mousePoint = GetMousePosition();
@@ -103,6 +104,11 @@ int main() {
         BeginDrawing();
             //Menu
             if(parteDoJogo == 2){
+                if(IsKeyPressed(KEY_P)) {
+                    while(IsKeyUp(KEY_O)) {
+                        ClearBackground(WHITE);
+                    }
+                }
 
                 ClearBackground(WHITE);
 
@@ -118,14 +124,17 @@ int main() {
 
                 DrawRectangleRec((Rectangle) {115 + 8*(100 - personagem1.vida), 100, 8*personagem1.vida, 50}, GREEN);
                 DrawRectangleRec((Rectangle) {GetScreenWidth()/2+60, 100, 8*personagem2.vida, 50}, RED);
-
+                DrawTextureRec(maps.asset1.textura, (Rectangle){maps.asset1.frameAtual * maps.asset1.textura.width/maps.asset1.qntFrames, 0, maps.asset1.textura.width/maps.asset1.qntFrames, maps.asset1.textura.height}, (Vector2){1000,180}, WHITE);
+                if(framesCounter <= 60/50){
+                    maps.asset1.frameAtual = (maps.asset1.frameAtual + 1) % maps.asset1.qntFrames;  
+                }
 
                 DrawTexture(maps.barraVida,0,0,WHITE);
                 animacaoPersonagem(&personagem1,framesCounter,&parteDoJogo);
                 animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
                 DrawTexture(maps.chao,0,GetScreenHeight()-ALTURA_CHAO-10,WHITE);
 
-                
+
                 
 
                 
