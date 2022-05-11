@@ -160,8 +160,6 @@ int main() {
             //pausa
             else if(parteDoJogo == 3) {
                 DrawText("Pausado", GetScreenWidth()/2 - 75, GetScreenHeight()/2, 40, GREEN);
-
-                //if(IsKeyPressed(KEY_P)) parteDoJogo = 0;
             }
             
 
