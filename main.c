@@ -255,7 +255,9 @@ int main() {
     encerrarSons(&personagem2);
     UnloadMusicStream(musica);
     UnloadTexture(button);
-    UnloadTexture(buttonAjuda); 
+    UnloadTexture(buttonAjuda);
+    UnloadTexture(logo);
+    UnloadTexture(buttonVoltar);  
     CloseAudioDevice();
     CloseWindow(); 
 
