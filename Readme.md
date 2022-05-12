@@ -1,5 +1,5 @@
 
-<h1 align="center">Projeto grupo 1</h1>
+<h1 align="center">FIGHTER MAY CRY</h1>
 
 <h4>Status : em desenvolvimento... 🚧</h4>
 <p align="center">
@@ -33,5 +33,7 @@
  Após isso é gerado um exe ,e pronto so abri-lo.
  
   <h3 id="Referencias:">:bulb: Referencias</h3>
-  <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">Aqui</a> e foram feitas por M_acrophage.</p>
-
+  <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">daqui</a> e foram feitas por M_acrophage.</p>
+  <P>As artes de fundos foram retiradas <a href="https://brullov.itch.io/oak-woods">daqui</a> e feitas por brullov.</p>
+  <p>Sons de ataque,defesa e de receber dano foram retirados <a href="https://mixkit.co/">deste site a musica de fundo tambem e foi feita por Michael Ramir C.</a>
+  
