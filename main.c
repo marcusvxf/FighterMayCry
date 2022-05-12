@@ -24,11 +24,16 @@ int main() {
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
+    sprite botoesP1;
+    sprite botoesP2;
+    sprite botoesExtra;
     Texture2D button = LoadTexture("assets/images/background/botao.png");
     Texture2D buttonAjuda = LoadTexture("assets/images/background/botaoAjuda.png");
     Texture2D buttonVoltar = LoadTexture("assets/images/background/botaoVoltar.png");
     Texture2D logo = LoadTexture("assets/images/background/logo.png");
-    //Texture2D back = LoadTexture("assets/images/background/vida2.png");
+    botoesP1.textura = LoadTexture("assets/images/background/botoesPlayer1.png");
+    botoesP1.textura = LoadTexture("assets/images/background/botoesPlayer2.png");
+    botoesExtra.textura = LoadTexture("assets/images/background/botoesExtra.png");
 
     SetMusicVolume(musica, 0.2f);
     PlayMusicStream(musica);
@@ -45,6 +50,12 @@ int main() {
     int frameAtualButton = 0;
     int frameAtualButtonAjuda = 0;
     int frameAtualButtonVoltar = 0;
+    botoesP1.frameAtual = 0;
+    botoesP1.qntFrames = 9;
+    botoesP2.frameAtual = 0;
+    botoesP2.qntFrames = 9;
+    botoesExtra.frameAtual = 0;
+    botoesExtra.qntFrames = 5;
 
     //float frameHeight = (float)button.height/NUM_FRAMES;
     //Rectangle sourceRec = {frameAtualButton*button.width/2,0, button.width/2, button.height };
@@ -240,6 +251,21 @@ int main() {
             else if (parteDoJogo == 4){
                 ClearBackground(BLUE);
                 DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
+
+                DrawTextureRec(botoesP1.textura, (Rectangle) {botoesP1.frameAtual * botoesP1.textura.width / botoesP1.qntFrames, 0, botoesP1.textura.width/botoesP1.qntFrames, botoesP1.textura.height}, (Vector2) {300, 0}, WHITE);
+                if(framesCounter <= 60/50){
+                    botoesP1.frameAtual = (botoesP1.frameAtual + 1) % botoesP1.qntFrames;
+                }
+
+                //DrawTextureRec(botoesP2.textura, (Rectangle) {botoesP2.frameAtual * botoesP2.textura.width / botoesP2.qntFrames, 0, botoesP2.textura.width/botoesP2.qntFrames, botoesP2.textura.height}, (Vector2) {300, 0}, WHITE);
+                if(framesCounter <= 60/50){
+                    botoesP2.frameAtual = (botoesP2.frameAtual + 1) % botoesP2.qntFrames;
+                }
+
+                //DrawTextureRec(botoesExtra.textura, (Rectangle) {botoesExtra.frameAtual * botoesExtra.textura.width / botoesExtra.qntFrames, 0, botoesExtra.textura.width/botoesExtra.qntFrames, botoesExtra.textura.height}, (Vector2) {3, 0}, WHITE);
+                if(framesCounter <= 60/50){
+                    botoesExtra.frameAtual = (botoesExtra.frameAtual + 1) % botoesExtra.qntFrames;
+                }
             }
             
 
@@ -257,7 +283,10 @@ int main() {
     UnloadTexture(button);
     UnloadTexture(buttonAjuda);
     UnloadTexture(logo);
-    UnloadTexture(buttonVoltar);  
+    UnloadTexture(buttonVoltar);
+    UnloadTexture(botoesP1.textura);
+    UnloadTexture(botoesP2.textura);
+    UnloadTexture(botoesExtra.textura);
     CloseAudioDevice();
     CloseWindow(); 
 
