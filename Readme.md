@@ -35,5 +35,5 @@
   <h3 id="Referencias:">:bulb: Referencias</h3>
   <p>A sprites dos personagens foram retiradas <a href="https://m-acrophage.itch.io/side-scrolling-hack-n-slash-character">daqui</a> e foram feitas por M_acrophage.</p>
   <P>As artes de fundos foram retiradas <a href="https://brullov.itch.io/oak-woods">daqui</a> e feitas por brullov.</p>
-  <p>Sons de ataque,defesa e de receber dano foram retirados <a href="https://mixkit.co/">deste site a musica de fundo tambem e foi feita por Michael Ramir C.</a>
+  <p>Sons de ataque,defesa e de receber dano foram retirados <a href="https://mixkit.co/">deste site</a> a musica de fundo tambem e foi feita por Michael Ramir C.</p>
   
