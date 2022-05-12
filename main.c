@@ -24,16 +24,14 @@ int main() {
     objPersonagem personagem2;
     Rectangle chao = (Rectangle) {0, GetScreenHeight()-ALTURA_CHAO, GetScreenWidth(), 1};
 
-    sprite botoesP1;
-    sprite botoesP2;
-    sprite botoesExtra;
+
     Texture2D button = LoadTexture("assets/images/background/botao.png");
     Texture2D buttonAjuda = LoadTexture("assets/images/background/botaoAjuda.png");
     Texture2D buttonVoltar = LoadTexture("assets/images/background/botaoVoltar.png");
     Texture2D logo = LoadTexture("assets/images/background/logo.png");
-    botoesP1.textura = LoadTexture("assets/images/background/botoesPlayer1.png");
-    botoesP1.textura = LoadTexture("assets/images/background/botoesPlayer2.png");
-    botoesExtra.textura = LoadTexture("assets/images/background/botoesExtra.png");
+    Texture2D botoes1 = LoadTexture("assets/images/background/botoesPlayer1.png");
+    Texture2D botoes2 = LoadTexture("assets/images/background/botoesPlayer2.png");
+    Texture2D botoesExtra = LoadTexture("assets/images/background/botoesExtra.png");
 
     SetMusicVolume(musica, 0.2f);
     PlayMusicStream(musica);
@@ -44,23 +42,11 @@ int main() {
     int framesCounter = 0;
     int framesSpeed = 8;
     int currentFrame = 0;
-    //int numeroFrames = 0;
     int parteDoJogo = 2;
 
     int frameAtualButton = 0;
     int frameAtualButtonAjuda = 0;
     int frameAtualButtonVoltar = 0;
-    botoesP1.frameAtual = 0;
-    botoesP1.qntFrames = 9;
-    botoesP2.frameAtual = 0;
-    botoesP2.qntFrames = 9;
-    botoesExtra.frameAtual = 0;
-    botoesExtra.qntFrames = 5;
-
-    //float frameHeight = (float)button.height/NUM_FRAMES;
-    //Rectangle sourceRec = {frameAtualButton*button.width/2,0, button.width/2, button.height };
-
-
 
     Vector2 mousePoint = { 0.0f, 0.0f };
 
@@ -70,8 +56,6 @@ int main() {
 
     float deltaTime;
 
-    //SetExitKey(KEY_NULL);
-    // Main game loop
     while (!WindowShouldClose()){
         UpdateMusicStream(musica);  
         framesCounter++;
@@ -82,6 +66,7 @@ int main() {
 
             if (framesCounter >= (60/framesSpeed))
             {
+                
                 framesCounter = 0;
                 currentFrame++;
             }
@@ -147,6 +132,8 @@ int main() {
         //tela de ajuda
         else if(parteDoJogo == 4){
 
+            
+
             if (CheckCollisionPointRec(mousePoint, (Rectangle){GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100, buttonVoltar.width/2, buttonVoltar.height}))
             {   
                 if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
@@ -161,7 +148,7 @@ int main() {
             }
             if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)){
                     frameAtualButtonVoltar = 0;
-                }
+            }
         }
 
         //Tela Final
@@ -192,6 +179,7 @@ int main() {
             if(parteDoJogo == 2){
 
                 ClearBackground(BLUE);
+                
                 DrawTexture(logo,GetScreenWidth()/2-logo.width/2,GetScreenHeight() - logo.height-200,WHITE);
 
                 DrawTextureRec(button, (Rectangle){frameAtualButton*button.width/2,0, button.width/2, button.height }, (Vector2){ GetScreenWidth()/2-button.width/4, GetScreenHeight()-button.height-100}, WHITE);
@@ -238,9 +226,8 @@ int main() {
             }
             //Final
             else if (parteDoJogo == 1){
-                ClearBackground(WHITE);
+                ClearBackground(BLUE);
                 if(IsCursorOnScreen()) ShowCursor();
-                DrawText("Final", 250, 20, 20, DARKGRAY);
                 DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
 
             }
@@ -252,20 +239,11 @@ int main() {
                 ClearBackground(BLUE);
                 DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
 
-                DrawTextureRec(botoesP1.textura, (Rectangle) {botoesP1.frameAtual * botoesP1.textura.width / botoesP1.qntFrames, 0, botoesP1.textura.width/botoesP1.qntFrames, botoesP1.textura.height}, (Vector2) {300, 0}, WHITE);
-                if(framesCounter <= 60/50){
-                    botoesP1.frameAtual = (botoesP1.frameAtual + 1) % botoesP1.qntFrames;
-                }
 
-                //DrawTextureRec(botoesP2.textura, (Rectangle) {botoesP2.frameAtual * botoesP2.textura.width / botoesP2.qntFrames, 0, botoesP2.textura.width/botoesP2.qntFrames, botoesP2.textura.height}, (Vector2) {300, 0}, WHITE);
-                if(framesCounter <= 60/50){
-                    botoesP2.frameAtual = (botoesP2.frameAtual + 1) % botoesP2.qntFrames;
-                }
+                DrawTextureRec(botoes1, (Rectangle) {0 , 0, botoes1.width/5, botoes1.height}, (Vector2) {100, 50}, WHITE);
+                DrawTexture(botoes2, GetScreenWidth()-botoes2.width-100, 50, WHITE);
+                DrawTextureRec(botoesExtra, (Rectangle) {0 , 0, botoesExtra.width/5, botoesExtra.height}, (Vector2) {100, GetScreenHeight()-botoesExtra.height-100}, WHITE);
 
-                //DrawTextureRec(botoesExtra.textura, (Rectangle) {botoesExtra.frameAtual * botoesExtra.textura.width / botoesExtra.qntFrames, 0, botoesExtra.textura.width/botoesExtra.qntFrames, botoesExtra.textura.height}, (Vector2) {3, 0}, WHITE);
-                if(framesCounter <= 60/50){
-                    botoesExtra.frameAtual = (botoesExtra.frameAtual + 1) % botoesExtra.qntFrames;
-                }
             }
             
 
@@ -284,9 +262,9 @@ int main() {
     UnloadTexture(buttonAjuda);
     UnloadTexture(logo);
     UnloadTexture(buttonVoltar);
-    UnloadTexture(botoesP1.textura);
-    UnloadTexture(botoesP2.textura);
-    UnloadTexture(botoesExtra.textura);
+    UnloadTexture(botoes1);
+    UnloadTexture(botoes2);
+    UnloadTexture(botoesExtra);
     CloseAudioDevice();
     CloseWindow(); 
 
