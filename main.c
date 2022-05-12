@@ -32,6 +32,7 @@ int main() {
     Texture2D botoes1 = LoadTexture("assets/images/background/botoesPlayer1.png");
     Texture2D botoes2 = LoadTexture("assets/images/background/botoesPlayer2.png");
     Texture2D botoesExtra = LoadTexture("assets/images/background/botoesExtra.png");
+    Texture2D fimDeJogo = LoadTexture("assets/images/background/fimDeJogo.png");
 
     SetMusicVolume(musica, 0.2f);
     PlayMusicStream(musica);
@@ -39,6 +40,7 @@ int main() {
     iniciarPersonagem(&personagem1, 1, 60);
     iniciarPersonagem(&personagem2, 0, GetScreenWidth() - 60 - LARGURA_PERSONAGEM);
 
+    int vencedor = 0;
     int framesCounter = 0;
     int framesSpeed = 8;
     int currentFrame = 0;
@@ -205,14 +207,17 @@ int main() {
                 }
 
                 DrawTexture(maps.barraVida,0,0,WHITE);
-                DrawText("Ajax",185,40,60,BLACK);
-                DrawText("Xaja",GetScreenWidth() - 185-125,40,60,BLACK);
+                DrawText("Dan",185,40,60,BLACK);
+                DrawText("Marc",GetScreenWidth() - 185-125,40,60,BLACK);
                 animacaoPersonagem(&personagem1,framesCounter,&parteDoJogo);
                 animacaoPersonagem(&personagem2, framesCounter,&parteDoJogo);
                 DrawTexture(maps.chao,0,GetScreenHeight()-ALTURA_CHAO-10,WHITE);
 
                 //reseta os personagens para proxima patida
                 if(parteDoJogo == 1) { 
+                    if(personagem1.vida <= 0 && personagem2.vida > 0) vencedor = 2;
+                    else if(personagem2.vida <= 0 && personagem1.vida > 0) vencedor = 1;
+                    else vencedor = 0;
                     personagem1.vida = 100;
                     personagem2.vida = 100;
                     personagem1.posicao.x = 60;
@@ -230,6 +235,17 @@ int main() {
                 if(IsCursorOnScreen()) ShowCursor();
                 DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
 
+                DrawTexture(fimDeJogo, GetScreenWidth() / 2 - fimDeJogo.width/2, 200, WHITE);
+
+                if(vencedor == 2) {
+                    DrawText("Player 2 venceu",GetScreenWidth() / 2-50, fimDeJogo.height+200, 100,BLACK);
+                }
+                else if(vencedor == 1) {
+                    DrawText("Player 1 venceu",GetScreenWidth() / 2-50, fimDeJogo.height+200,100,BLACK);
+                }
+                else {
+                    DrawText("Empate",GetScreenWidth() / 2-50, fimDeJogo.height+200, 100,BLACK);
+                }
             }
             //pausa
             else if(parteDoJogo == 3) {
@@ -240,9 +256,9 @@ int main() {
                 DrawTextureRec(buttonVoltar, (Rectangle){frameAtualButtonVoltar*buttonVoltar.width/2,0, buttonVoltar.width/2, buttonVoltar.height }, (Vector2){ GetScreenWidth()-buttonVoltar.width/2-50, GetScreenHeight()-buttonVoltar.height-100}, WHITE);
 
 
-                DrawTextureRec(botoes1, (Rectangle) {0 , 0, botoes1.width/5, botoes1.height}, (Vector2) {100, 50}, WHITE);
-                DrawTexture(botoes2, GetScreenWidth()-botoes2.width-100, 50, WHITE);
-                DrawTextureRec(botoesExtra, (Rectangle) {0 , 0, botoesExtra.width/5, botoesExtra.height}, (Vector2) {100, GetScreenHeight()-botoesExtra.height-100}, WHITE);
+                DrawTexture(botoes1, 300, 50, WHITE);
+                DrawTexture(botoes2, GetScreenWidth()-botoes2.width-300, 50, WHITE);
+                DrawTexture(botoesExtra, 400, GetScreenHeight()-botoesExtra.height-100, WHITE);
 
             }
             
@@ -265,6 +281,7 @@ int main() {
     UnloadTexture(botoes1);
     UnloadTexture(botoes2);
     UnloadTexture(botoesExtra);
+    UnloadTexture(fimDeJogo);
     CloseAudioDevice();
     CloseWindow(); 
 
