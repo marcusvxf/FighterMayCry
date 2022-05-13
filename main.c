@@ -14,7 +14,7 @@ int main() {
     InitAudioDevice();
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+    InitWindow(screenWidth, screenHeight, "Fighter May Cry");
   
     if(!IsWindowFullscreen()) ToggleFullscreen();
 
