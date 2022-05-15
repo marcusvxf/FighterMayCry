@@ -1,7 +1,7 @@
 
 <h1 align="center">FIGHTER MAY CRY</h1>
 
-<h4>Status : em desenvolvimento... 🚧</h4>
+<h4>Status : Finalizado :trophy:</h4>
 <p align="center">
  <a href="#grupo">Grupo</a>•
  <a href="#descricao">Descrição</a>•
